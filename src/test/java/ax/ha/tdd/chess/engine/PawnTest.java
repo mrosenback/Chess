@@ -4,6 +4,7 @@ import ax.ha.tdd.chess.engine.pieces.ChessPiece;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class PawnTest {
 
@@ -22,5 +23,12 @@ public class PawnTest {
         ChessPiece chessPiece = chessboard.getPiece(coordinates);
         game.move("a2-a3");
         assertEquals(new Coordinates(0,5), chessPiece.getLocation());
+    }
+
+    @Test
+    public void no_duplicate_with_move() {
+        Coordinates coordinates = new Coordinates(0,6);
+        game.move("a2-a3");
+        assertNull(chessboard.getPiece(coordinates));
     }
 }
