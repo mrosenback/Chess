@@ -32,6 +32,10 @@ public abstract class ChessPiece {
         return location;
     }
 
+    public void updateLocation(Coordinates newLocation) {
+        location = newLocation;
+    }
+
 
     /**
      * Suggestion of design:

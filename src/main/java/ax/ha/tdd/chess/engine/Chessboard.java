@@ -34,6 +34,11 @@ public class Chessboard implements Iterable<ChessPiece[]> {
         board[chessPiece.getLocation().getY()][chessPiece.getLocation().getX()] = chessPiece;
     }
 
+    public void updatePiece(ChessPiece chessPiece, Coordinates location) {
+        board[location.getY()][location.getX()] = null;
+        board[chessPiece.getLocation().getY()][chessPiece.getLocation().getX()] = chessPiece;
+    }
+
     /**
      * Helper method to initialize chessboard with {@link ChessPieceStub}.
      * Basically mirrors all added pieces for both players.
