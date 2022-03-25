@@ -14,6 +14,8 @@ public abstract class ChessPiece {
 
     protected Coordinates location;
 
+    protected boolean promotion;
+
     public ChessPiece(PieceType pieceType, final Player player,
                       final Coordinates location) {
         this.pieceType = pieceType;
@@ -31,6 +33,14 @@ public abstract class ChessPiece {
 
     public Coordinates getLocation() {
         return location;
+    }
+
+    public boolean getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(boolean value) {
+        promotion = value;
     }
 
     public void updateLocation(Coordinates newLocation) {

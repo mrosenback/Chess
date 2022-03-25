@@ -93,4 +93,22 @@ public class PawnTest {
         game.move("a4-b5");
         assertEquals(new Coordinates(1,3), chessPiece.getLocation());
     }
+
+    @Test
+    public void move_freely_after_reaching_other_side() {
+        Coordinates coordinates = new Coordinates(0,6);
+        ChessPiece chessPiece = chessboard.getPiece(coordinates);
+        game.move("a2-a4");
+        game.move("h7-h6");
+        game.move("a4-a5");
+        game.move("h6-h5");
+        game.move("a5-a6");
+        game.move("h5-h4");
+        game.move("a6-b7");
+        game.move("h4-h3");
+        game.move("b7-a8");
+        game.move("h3-g2");
+        game.move("a8-d5");
+        assertEquals(new Coordinates(3,3), chessPiece.getLocation());
+    }
 }

@@ -8,6 +8,9 @@ import ax.ha.tdd.chess.engine.pieces.ChessPiece;
 import ax.ha.tdd.chess.engine.pieces.PieceType;
 
 public class Pawn extends ChessPiece {
+
+    boolean promotion = false;
+
     public Pawn(PieceType pieceType, Player player, Coordinates location) {
         super(pieceType, player, location);
     }
@@ -19,30 +22,41 @@ public class Pawn extends ChessPiece {
 
     @Override
     public boolean canMove(Chessboard chessboard, Coordinates destination) throws InvalidMovementException {
-        if (player.getSymbol().equals("W")) {
-            if (!chessboard.getPiece(location).getPlayer().equals(player)) {
-                return false;
-            }
-            if (destination.getY() < location.getY()) {
-                if (location.getY() - destination.getY() > 1) {
-                    return location.getY() == 6;
-                } if (destination.getX() != location.getX()) {
-                    return chessboard.getPiece(destination) != null;
+
+        if (!chessboard.getPiece(location).getPromotion()) {
+            if (player.getSymbol().equals("W")) {
+                if (location.getY() == 0) {
+                    chessboard.getPiece(location).setPromotion(true);
                 }
-                return chessboard.getPiece(destination) == null;
-            }
-        } else if (player.getSymbol().equals("B")) {
-            if (!chessboard.getPiece(location).getPlayer().equals(player)) {
-                return false;
-            }
-            if (destination.getY() > location.getY()) {
-                if (destination.getY() - location.getY() > 1) {
-                    return location.getY() == 1;
-                } if (destination.getX() != location.getX()) {
-                    return chessboard.getPiece(destination) != null;
+                if (!chessboard.getPiece(location).getPlayer().equals(player)) {
+                    return false;
                 }
-                return chessboard.getPiece(destination) == null;
+                if (destination.getY() < location.getY()) {
+                    if (location.getY() - destination.getY() > 1) {
+                        return location.getY() == 6 && location.getY() - destination.getY() < 3;
+                    } if (destination.getX() != location.getX()) {
+                        return chessboard.getPiece(destination) != null;
+                    }
+                    return chessboard.getPiece(destination) == null;
+                }
+            } else if (player.getSymbol().equals("B")) {
+                if (location.getY() == 7) {
+                    chessboard.getPiece(location).setPromotion(true);
+                }
+                if (!chessboard.getPiece(location).getPlayer().equals(player)) {
+                    return false;
+                }
+                if (destination.getY() > location.getY()) {
+                    if (destination.getY() - location.getY() > 1) {
+                        return location.getY() == 1 && destination.getY() - location.getY() < 3;
+                    } if (destination.getX() != location.getX()) {
+                        return chessboard.getPiece(destination) != null;
+                    }
+                    return chessboard.getPiece(destination) == null;
+                }
             }
+        } if (chessboard.getPiece(location).getPromotion()){
+            return true;
         }
         throw new InvalidMovementException("Illegal move, try again");
     }
