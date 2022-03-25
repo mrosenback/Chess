@@ -38,7 +38,6 @@ public class PawnTest {
         ChessPiece chessPiece = chessboard.getPiece(coordinates);
         game.move("a2-b2");
         assertEquals(new Coordinates(0,6), chessPiece.getLocation());
-
     }
 
     @Test
@@ -47,7 +46,6 @@ public class PawnTest {
         ChessPiece chessPiece = chessboard.getPiece(coordinates);
         game.move("a2-a1");
         assertEquals(new Coordinates(0,6), chessPiece.getLocation());
-
     }
 
     @Test
@@ -56,7 +54,6 @@ public class PawnTest {
         ChessPiece chessPiece = chessboard.getPiece(coordinates);
         game.move("a2-a4");
         assertEquals(new Coordinates(0,4), chessPiece.getLocation());
-
     }
 
     @Test
@@ -67,7 +64,6 @@ public class PawnTest {
         game.move("a7-a6");
         game.move("a3-a5");
         assertEquals(new Coordinates(0,5), chessPiece.getLocation());
-
     }
 
     @Test
@@ -78,6 +74,13 @@ public class PawnTest {
         game.move("a7-a5");
         game.move("a4-a5");
         assertEquals(new Coordinates(0,4), chessPiece.getLocation());
+    }
 
+    @Test
+    public void move_diagonally_to_empty_spot_not_allowed() {
+        Coordinates coordinates = new Coordinates(0,6);
+        ChessPiece chessPiece = chessboard.getPiece(coordinates);
+        game.move("a2-b2");
+        assertEquals(new Coordinates(0,6), chessPiece.getLocation());
     }
 }
