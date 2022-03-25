@@ -40,4 +40,13 @@ public class PawnTest {
         assertEquals(new Coordinates(0,6), chessPiece.getLocation());
 
     }
+
+    @Test
+    public void Pawn_move_backwards_not_allowed() {
+        Coordinates coordinates = new Coordinates(0,6);
+        ChessPiece chessPiece = chessboard.getPiece(coordinates);
+        game.move("a2-a1");
+        assertEquals(new Coordinates(0,6), chessPiece.getLocation());
+
+    }
 }
