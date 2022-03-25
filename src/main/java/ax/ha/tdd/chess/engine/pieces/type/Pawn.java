@@ -20,20 +20,28 @@ public class Pawn extends ChessPiece {
     @Override
     public boolean canMove(Chessboard chessboard, Coordinates destination) throws InvalidMovementException {
         if (player.getSymbol().equals("W")) {
+            if (!chessboard.getPiece(location).getPlayer().equals(player)) {
+                return false;
+            }
             if (destination.getY() < location.getY()) {
                 if (location.getY() - destination.getY() > 1) {
                     return location.getY() == 6;
-                } else {
-                    return true;
+                } if (destination.getX() != location.getX()) {
+                    return chessboard.getPiece(destination) != null;
                 }
+                return chessboard.getPiece(destination) == null;
             }
         } else if (player.getSymbol().equals("B")) {
+            if (!chessboard.getPiece(location).getPlayer().equals(player)) {
+                return false;
+            }
             if (destination.getY() > location.getY()) {
                 if (destination.getY() - location.getY() > 1) {
                     return location.getY() == 1;
-                } else {
-                    return true;
+                } if (destination.getX() != location.getX()) {
+                    return chessboard.getPiece(destination) != null;
                 }
+                return chessboard.getPiece(destination) == null;
             }
         }
         throw new InvalidMovementException("Illegal move, try again");

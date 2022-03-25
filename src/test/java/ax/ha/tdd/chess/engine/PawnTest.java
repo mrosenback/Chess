@@ -64,8 +64,20 @@ public class PawnTest {
         Coordinates coordinates = new Coordinates(0,6);
         ChessPiece chessPiece = chessboard.getPiece(coordinates);
         game.move("a2-a3");
+        game.move("a7-a6");
         game.move("a3-a5");
         assertEquals(new Coordinates(0,5), chessPiece.getLocation());
+
+    }
+
+    @Test
+    public void move_forward_to_occupied_spot_not_allowed() {
+        Coordinates coordinates = new Coordinates(0,6);
+        ChessPiece chessPiece = chessboard.getPiece(coordinates);
+        game.move("a2-a4");
+        game.move("a7-a5");
+        game.move("a4-a5");
+        assertEquals(new Coordinates(0,4), chessPiece.getLocation());
 
     }
 }
