@@ -21,11 +21,19 @@ public class Pawn extends ChessPiece {
     public boolean canMove(Chessboard chessboard, Coordinates destination) throws InvalidMovementException {
         if (player.getSymbol().equals("W")) {
             if (destination.getY() < location.getY()) {
-                return true;
+                if (location.getY() - destination.getY() > 1) {
+                    return location.getY() == 6;
+                } else {
+                    return true;
+                }
             }
         } else if (player.getSymbol().equals("B")) {
             if (destination.getY() > location.getY()) {
-                return true;
+                if (destination.getY() - location.getY() > 1) {
+                    return location.getY() == 1;
+                } else {
+                    return true;
+                }
             }
         }
         throw new InvalidMovementException("Illegal move, try again");

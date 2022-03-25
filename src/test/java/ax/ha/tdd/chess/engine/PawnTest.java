@@ -49,4 +49,13 @@ public class PawnTest {
         assertEquals(new Coordinates(0,6), chessPiece.getLocation());
 
     }
+
+    @Test
+    public void two_steps_at_start() {
+        Coordinates coordinates = new Coordinates(0,6);
+        ChessPiece chessPiece = chessboard.getPiece(coordinates);
+        game.move("a2-a4");
+        assertEquals(new Coordinates(0,4), chessPiece.getLocation());
+
+    }
 }
