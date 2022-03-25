@@ -83,4 +83,14 @@ public class PawnTest {
         game.move("a2-b2");
         assertEquals(new Coordinates(0,6), chessPiece.getLocation());
     }
+
+    @Test
+    public void move_diagonally_to_occupied_spot() {
+        Coordinates coordinates = new Coordinates(0,6);
+        ChessPiece chessPiece = chessboard.getPiece(coordinates);
+        game.move("a2-a4");
+        game.move("b7-b5");
+        game.move("a4-b5");
+        assertEquals(new Coordinates(1,3), chessPiece.getLocation());
+    }
 }
