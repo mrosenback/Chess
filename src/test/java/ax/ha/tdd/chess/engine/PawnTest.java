@@ -58,4 +58,14 @@ public class PawnTest {
         assertEquals(new Coordinates(0,4), chessPiece.getLocation());
 
     }
+
+    @Test
+    public void two_steps_after_start_not_allowed() {
+        Coordinates coordinates = new Coordinates(0,6);
+        ChessPiece chessPiece = chessboard.getPiece(coordinates);
+        game.move("a2-a3");
+        game.move("a3-a5");
+        assertEquals(new Coordinates(0,5), chessPiece.getLocation());
+
+    }
 }
