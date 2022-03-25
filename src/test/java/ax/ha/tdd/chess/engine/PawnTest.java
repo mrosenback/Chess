@@ -31,4 +31,13 @@ public class PawnTest {
         game.move("a2-a3");
         assertNull(chessboard.getPiece(coordinates));
     }
+
+    @Test
+    public void Pawn_move_sideways_not_allowed() {
+        Coordinates coordinates = new Coordinates(0,6);
+        ChessPiece chessPiece = chessboard.getPiece(coordinates);
+        game.move("a2-b2");
+        assertEquals(new Coordinates(0,6), chessPiece.getLocation());
+
+    }
 }

@@ -2,6 +2,7 @@ package ax.ha.tdd.chess.engine.pieces.type;
 
 import ax.ha.tdd.chess.engine.Chessboard;
 import ax.ha.tdd.chess.engine.Coordinates;
+import ax.ha.tdd.chess.engine.InvalidMovementException;
 import ax.ha.tdd.chess.engine.Player;
 import ax.ha.tdd.chess.engine.pieces.ChessPiece;
 import ax.ha.tdd.chess.engine.pieces.PieceType;
@@ -17,7 +18,7 @@ public class Pawn extends ChessPiece {
     }
 
     @Override
-    public boolean canMove(Chessboard chessboard, Coordinates destination) {
+    public boolean canMove(Chessboard chessboard, Coordinates destination) throws InvalidMovementException {
         if (player.getSymbol().equals("W")) {
             if (destination.getY() < location.getY()) {
                 return true;
@@ -27,6 +28,6 @@ public class Pawn extends ChessPiece {
                 return true;
             }
         }
-        return false;
+        throw new InvalidMovementException("Illegal move, try again");
     }
 }

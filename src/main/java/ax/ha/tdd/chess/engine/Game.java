@@ -59,14 +59,19 @@ public class Game {
         Coordinates newLocation = new Coordinates(newX, newY);
         ChessPiece piece = board.getPiece(currentLocation);
 
-        if (new Pawn(piece.getPieceType(), getPlayerToMove(), currentLocation).canMove(board, newLocation)) {
-            validMove = true;
-            playerWhite = !playerWhite;
-            piece.updateLocation(newLocation);
-            board.updatePiece(piece, currentLocation);
-        } else {
-            validMove = false;
+        try {
+            if (new Pawn(piece.getPieceType(), getPlayerToMove(), currentLocation).canMove(board, newLocation)) {
+                validMove = true;
+                playerWhite = !playerWhite;
+                piece.updateLocation(newLocation);
+                board.updatePiece(piece, currentLocation);
+            } else {
+                validMove = false;
+            }
+        } catch (InvalidMovementException e) {
+            System.out.println(e);
         }
+
     }
 
 

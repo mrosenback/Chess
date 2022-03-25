@@ -2,6 +2,7 @@ package ax.ha.tdd.chess.engine.pieces;
 
 import ax.ha.tdd.chess.engine.Chessboard;
 import ax.ha.tdd.chess.engine.Coordinates;
+import ax.ha.tdd.chess.engine.InvalidMovementException;
 import ax.ha.tdd.chess.engine.Player;
 
 import java.util.Objects;
@@ -47,7 +48,7 @@ public abstract class ChessPiece {
      * @param destination destination
      * @return true if piece can move to the destination
      */
-    public abstract boolean canMove(final Chessboard chessboard, final Coordinates destination);
+    public abstract boolean canMove(final Chessboard chessboard, final Coordinates destination) throws InvalidMovementException;
 
     @Override
     public boolean equals(Object o) {

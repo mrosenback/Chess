@@ -1,6 +1,7 @@
 package ax.ha.tdd.chess.web;
 
 import ax.ha.tdd.chess.engine.Game;
+import ax.ha.tdd.chess.engine.InvalidMovementException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
