@@ -9,8 +9,6 @@ import ax.ha.tdd.chess.engine.pieces.PieceType;
 
 public class Pawn extends ChessPiece {
 
-    boolean promotion = false;
-
     public Pawn(PieceType pieceType, Player player, Coordinates location) {
         super(pieceType, player, location);
     }

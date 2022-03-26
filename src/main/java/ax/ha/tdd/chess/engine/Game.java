@@ -4,6 +4,7 @@ import ax.ha.tdd.chess.engine.pieces.ChessPiece;
 import ax.ha.tdd.chess.engine.pieces.ChessPieceStub;
 import ax.ha.tdd.chess.engine.pieces.PieceType;
 import ax.ha.tdd.chess.engine.pieces.type.Pawn;
+import ax.ha.tdd.chess.engine.pieces.type.Rook;
 
 public class Game {
 
@@ -60,21 +61,39 @@ public class Game {
         ChessPiece piece = board.getPiece(currentLocation);
 
         try {
-            if (new Pawn(piece.getPieceType(), getPlayerToMove(), currentLocation).canMove(board, newLocation)) {
-                validMove = true;
-                playerWhite = !playerWhite;
-                piece.updateLocation(newLocation);
-                board.updatePiece(piece, currentLocation);
-            } else {
-                validMove = false;
+            switch (piece.getPieceType()) {
+                case PAWN:
+                    if (new Pawn(piece.getPieceType(), getPlayerToMove(), currentLocation).canMove(board, newLocation)) {
+                        validMove = true;
+                        playerWhite = !playerWhite;
+                        piece.updateLocation(newLocation);
+                        board.updatePiece(piece, currentLocation);
+                    } else {
+                        validMove = false;
+                    }
+                case ROOK:
+                    if (new Rook(piece.getPieceType(), getPlayerToMove(), currentLocation).canMove(board, newLocation)) {
+                        validMove = true;
+                        playerWhite = !playerWhite;
+                        piece.updateLocation(newLocation);
+                        board.updatePiece(piece, currentLocation);
+                    } else {
+                        validMove = false;
+                    }
+                case KNIGHT:
+
+                case BISHOP:
+
+                case QUEEN:
+
+                case KING:
+
             }
         } catch (InvalidMovementException e) {
             System.out.println(e);
         }
 
     }
-
-
 
     public int letterToInteger(char n) {
         if (n == 'a') {
