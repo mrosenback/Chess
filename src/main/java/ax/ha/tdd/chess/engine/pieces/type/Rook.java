@@ -19,6 +19,19 @@ public class Rook extends ChessPiece {
 
     @Override
     public boolean canMove(Chessboard chessboard, Coordinates destination) throws InvalidMovementException {
-        return false;
+        if (player.getSymbol().equals("W")) {
+            if (!chessboard.getPiece(location).getPlayer().equals(player)) {
+                return false;
+            } if (destination.getY() < location.getY()) {
+                return true;
+            }
+        } else if (player.getSymbol().equals("B")) {
+            if (!chessboard.getPiece(location).getPlayer().equals(player)) {
+                return false;
+            } if (destination.getY() > location.getY()) {
+                return true;
+            }
+        }
+        throw new InvalidMovementException("Illegal move, try again");
     }
 }

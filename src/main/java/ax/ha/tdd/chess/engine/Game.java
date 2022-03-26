@@ -61,33 +61,24 @@ public class Game {
         ChessPiece piece = board.getPiece(currentLocation);
 
         try {
-            switch (piece.getPieceType()) {
-                case PAWN:
-                    if (new Pawn(piece.getPieceType(), getPlayerToMove(), currentLocation).canMove(board, newLocation)) {
-                        validMove = true;
-                        playerWhite = !playerWhite;
-                        piece.updateLocation(newLocation);
-                        board.updatePiece(piece, currentLocation);
-                    } else {
-                        validMove = false;
-                    }
-                case ROOK:
-                    if (new Rook(piece.getPieceType(), getPlayerToMove(), currentLocation).canMove(board, newLocation)) {
-                        validMove = true;
-                        playerWhite = !playerWhite;
-                        piece.updateLocation(newLocation);
-                        board.updatePiece(piece, currentLocation);
-                    } else {
-                        validMove = false;
-                    }
-                case KNIGHT:
-
-                case BISHOP:
-
-                case QUEEN:
-
-                case KING:
-
+            if (piece.getPieceType() == PieceType.PAWN) {
+                if (new Pawn(piece.getPieceType(), getPlayerToMove(), currentLocation).canMove(board, newLocation)) {
+                    validMove = true;
+                    playerWhite = !playerWhite;
+                    piece.updateLocation(newLocation);
+                    board.updatePiece(piece, currentLocation);
+                } else {
+                    validMove = false;
+                }
+            } if (piece.getPieceType() == PieceType.ROOK) {
+                if (new Rook(piece.getPieceType(), getPlayerToMove(), currentLocation).canMove(board, newLocation)) {
+                    validMove = true;
+                    playerWhite = !playerWhite;
+                    piece.updateLocation(newLocation);
+                    board.updatePiece(piece, currentLocation);
+                } else {
+                    validMove = false;
+                }
             }
         } catch (InvalidMovementException e) {
             System.out.println(e);
