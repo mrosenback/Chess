@@ -31,24 +31,12 @@ public class Pawn extends ChessPiece {
                 }
                 if (destination.getY() < location.getY()) {
                     if (location.getY() - destination.getY() > 1) {
-                        if (location.getY() == 6 && location.getY() - destination.getY() < 3) {
-                            return true;
-                        } else {
-                            return false;
-                        }
+                        return location.getY() == 6 && location.getY() - destination.getY() < 3;
                     }
                     if (destination.getX() != location.getX()) {
-                        if (chessboard.getPiece(destination) != null) {
-                            return true;
-                        } else {
-                            return false;
-                        }
+                        return chessboard.getPiece(destination) != null;
                     }
-                    if (chessboard.getPiece(destination) == null) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    return chessboard.getPiece(destination) == null;
                 }
             } else if (player.getSymbol().equals("B")) {
                 if (location.getY() == 7) {
@@ -59,30 +47,15 @@ public class Pawn extends ChessPiece {
                 }
                 if (destination.getY() > location.getY()) {
                     if (destination.getY() - location.getY() > 1) {
-                        if (location.getY() == 1 && destination.getY() - location.getY() < 3) {
-                            return true;
-                        } else {
-                            return false;
-                        }
+                        return location.getY() == 1 && destination.getY() - location.getY() < 3;
                     }
                     if (destination.getX() != location.getX()) {
-                        if (chessboard.getPiece(destination) != null) {
-                            return true;
-                        } else {
-                            return false;
-                        }
+                        return chessboard.getPiece(destination) != null;
                     }
-                    if (chessboard.getPiece(destination) == null) {
-                        return true;
-                    } else {
-                        return false;
-                    }
+                    return chessboard.getPiece(destination) == null;
                 }
             }
         }
-        if (chessboard.getPiece(location).getPromotion()){
-            return true;
-        }
-        return false;
+        return chessboard.getPiece(location).getPromotion();
     }
 }

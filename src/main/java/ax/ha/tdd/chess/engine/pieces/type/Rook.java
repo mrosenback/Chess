@@ -22,12 +22,11 @@ public class Rook extends ChessPiece {
         if (!chessboard.getPiece(location).getPlayer().equals(player)) {
             return false;
         }
+        if (location.getY() != destination.getY() && location.getX() != destination.getX()) {
+            return false;
+        }
         if (chessboard.getPiece(destination) != null) {
-            if (!chessboard.getPiece(destination).getPlayer().getSymbol().equals(player.getSymbol())) {
-                return true;
-            } else {
-                return false;
-            }
+            return !chessboard.getPiece(destination).getPlayer().getSymbol().equals(player.getSymbol());
         }
         if (chessboard.getPiece(destination) == null) {
             int counter;
