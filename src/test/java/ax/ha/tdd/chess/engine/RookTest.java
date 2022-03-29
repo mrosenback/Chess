@@ -74,4 +74,12 @@ public class RookTest {
         game.move("b3-b7");
         assertEquals(new Coordinates("b7"), chessPiece.getLocation());
     }
+
+    @Test
+    public void move_over_another_not_allowed() {
+        Coordinates coordinates = new Coordinates("a1");
+        ChessPiece chessPiece = chessboard.getPiece(coordinates);
+        game.move("a1-a3");
+        assertEquals(new Coordinates("a1"), chessPiece.getLocation());
+    }
 }

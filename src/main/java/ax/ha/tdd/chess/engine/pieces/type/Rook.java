@@ -18,26 +18,47 @@ public class Rook extends ChessPiece {
     }
 
     @Override
-    public boolean canMove(Chessboard chessboard, Coordinates destination) throws InvalidMovementException {
-        if (player.getSymbol().equals("W")) {
-            if (!chessboard.getPiece(location).getPlayer().equals(player)) {
-                return false;
-            } if (chessboard.getPiece(destination) != null) {
-                if (!chessboard.getPiece(destination).getPlayer().getSymbol().equals(player.getSymbol())) {
-                    return true;
-                }
-            }
-            return chessboard.getPiece(destination) == null;
-        } else if (player.getSymbol().equals("B")) {
-            if (!chessboard.getPiece(location).getPlayer().equals(player)) {
-                return false;
-            } if (chessboard.getPiece(destination) != null) {
-                if (!chessboard.getPiece(destination).getPlayer().getSymbol().equals(player.getSymbol())) {
-                    return true;
-                }
-            }
-            return chessboard.getPiece(destination) == null;
+    public boolean canMove(Chessboard chessboard, Coordinates destination) {
+        if (!chessboard.getPiece(location).getPlayer().equals(player)) {
+            return false;
         }
-        throw new InvalidMovementException("Illegal move, try again");
+        if (chessboard.getPiece(destination) != null) {
+            if (!chessboard.getPiece(destination).getPlayer().getSymbol().equals(player.getSymbol())) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        if (chessboard.getPiece(destination) == null) {
+            int counter;
+
+            if (location.getY() != destination.getY()) {
+                if (location.getY() < destination.getY()) {
+                    counter = 1;
+                } else {
+                    counter = -1;
+                }
+
+                for (int i = location.getY() + counter; i != destination.getY(); i += counter) {
+                    if (chessboard.getPiece(new Coordinates(location.getX(), i)) != null) {
+                        return false;
+                    }
+                }
+            }
+            if (location.getX() != destination.getX()) {
+                if (location.getX() < destination.getX()) {
+                    counter = 1;
+                } else {
+                    counter = -1;
+                }
+
+                for (int i = location.getX() + counter; i != destination.getX(); i += counter) {
+                    if (chessboard.getPiece(new Coordinates(i, location.getY())) != null) {
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
     }
 }

@@ -19,7 +19,7 @@ public class Pawn extends ChessPiece {
     }
 
     @Override
-    public boolean canMove(Chessboard chessboard, Coordinates destination) throws InvalidMovementException {
+    public boolean canMove(Chessboard chessboard, Coordinates destination) {
 
         if (!chessboard.getPiece(location).getPromotion()) {
             if (player.getSymbol().equals("W")) {
@@ -31,11 +31,24 @@ public class Pawn extends ChessPiece {
                 }
                 if (destination.getY() < location.getY()) {
                     if (location.getY() - destination.getY() > 1) {
-                        return location.getY() == 6 && location.getY() - destination.getY() < 3;
-                    } if (destination.getX() != location.getX()) {
-                        return chessboard.getPiece(destination) != null;
+                        if (location.getY() == 6 && location.getY() - destination.getY() < 3) {
+                            return true;
+                        } else {
+                            return false;
+                        }
                     }
-                    return chessboard.getPiece(destination) == null;
+                    if (destination.getX() != location.getX()) {
+                        if (chessboard.getPiece(destination) != null) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                    if (chessboard.getPiece(destination) == null) {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 }
             } else if (player.getSymbol().equals("B")) {
                 if (location.getY() == 7) {
@@ -46,16 +59,30 @@ public class Pawn extends ChessPiece {
                 }
                 if (destination.getY() > location.getY()) {
                     if (destination.getY() - location.getY() > 1) {
-                        return location.getY() == 1 && destination.getY() - location.getY() < 3;
-                    } if (destination.getX() != location.getX()) {
-                        return chessboard.getPiece(destination) != null;
+                        if (location.getY() == 1 && destination.getY() - location.getY() < 3) {
+                            return true;
+                        } else {
+                            return false;
+                        }
                     }
-                    return chessboard.getPiece(destination) == null;
+                    if (destination.getX() != location.getX()) {
+                        if (chessboard.getPiece(destination) != null) {
+                            return true;
+                        } else {
+                            return false;
+                        }
+                    }
+                    if (chessboard.getPiece(destination) == null) {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 }
             }
-        } if (chessboard.getPiece(location).getPromotion()){
+        }
+        if (chessboard.getPiece(location).getPromotion()){
             return true;
         }
-        throw new InvalidMovementException("Illegal move, try again");
+        return false;
     }
 }

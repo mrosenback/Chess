@@ -5,7 +5,8 @@
     <title th:text="'TDD-Chess'"></title>
     <link href="/css/main.css" rel="stylesheet">
     <style>
-            .chess-board { border-spacing: 0; border-collapse: collapse; }
+            body { display: flex; align-items: center; flex-direction: column; }
+            .chess-board { border-spacing: 0; border-collapse: collapse; margin-bottom: 20px; }
             .chess-board th { padding: .5em; }
             .chess-board th + th { border-bottom: 1px solid #000; }
             .chess-board th:first-child,
@@ -44,7 +45,7 @@
 </table>
 
 <form>
-    <label for="move">Your move (eg. a1-b1, O-O or O-O-O):</label>
+    <label for="move">Your move (eg. a2-a3):</label>
     <input type="text" id="move" name="move">
     <input type="submit" value="Move">
 </form>

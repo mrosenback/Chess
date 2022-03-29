@@ -69,6 +69,7 @@ public class Game {
                     board.updatePiece(piece, currentLocation);
                 } else {
                     validMove = false;
+                    throw new InvalidMovementException("Illegal move, try again");
                 }
             } if (piece.getPieceType() == PieceType.ROOK) {
                 if (new Rook(piece.getPieceType(), getPlayerToMove(), currentLocation).canMove(board, newLocation)) {
@@ -78,6 +79,7 @@ public class Game {
                     board.updatePiece(piece, currentLocation);
                 } else {
                     validMove = false;
+                    throw new InvalidMovementException("Illegal move, try again");
                 }
             }
         } catch (InvalidMovementException e) {
