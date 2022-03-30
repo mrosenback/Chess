@@ -3,6 +3,7 @@ package ax.ha.tdd.chess.engine;
 import ax.ha.tdd.chess.engine.pieces.ChessPiece;
 import ax.ha.tdd.chess.engine.pieces.ChessPieceStub;
 import ax.ha.tdd.chess.engine.pieces.PieceType;
+import ax.ha.tdd.chess.engine.pieces.type.Knight;
 import ax.ha.tdd.chess.engine.pieces.type.Pawn;
 import ax.ha.tdd.chess.engine.pieces.type.Rook;
 
@@ -73,6 +74,16 @@ public class Game {
                 }
             } if (piece.getPieceType() == PieceType.ROOK) {
                 if (new Rook(piece.getPieceType(), getPlayerToMove(), currentLocation).canMove(board, newLocation)) {
+                    validMove = true;
+                    playerWhite = !playerWhite;
+                    piece.updateLocation(newLocation);
+                    board.updatePiece(piece, currentLocation);
+                } else {
+                    validMove = false;
+                    throw new InvalidMovementException("Illegal move, try again");
+                }
+            } if (piece.getPieceType() == PieceType.KNIGHT) {
+                if (new Knight(piece.getPieceType(), getPlayerToMove(), currentLocation).canMove(board, newLocation)) {
                     validMove = true;
                     playerWhite = !playerWhite;
                     piece.updateLocation(newLocation);
