@@ -39,4 +39,14 @@ public class KnightTest {
         game.move("b1-c3");
         assertEquals(new Coordinates("c3"), chessPiece.getLocation());
     }
+
+    @Test
+    public void move_to_occupied_spot_not_allowed() {
+        Coordinates coordinates = new Coordinates("b1");
+        ChessPiece chessPiece = chessboard.getPiece(coordinates);
+        game.move("b1-c3");
+        game.move("a7-a6");
+        game.move("c3-e2");
+        assertEquals(new Coordinates("c3"), chessPiece.getLocation());
+    }
 }
