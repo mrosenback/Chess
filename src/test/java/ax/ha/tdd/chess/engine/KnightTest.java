@@ -31,4 +31,12 @@ public class KnightTest {
         game.move("b1-b3");
         assertEquals(new Coordinates("b1"), chessPiece.getLocation());
     }
+
+    @Test
+    public void Knight_move_over_another() {
+        Coordinates coordinates = new Coordinates("b1");
+        ChessPiece chessPiece = chessboard.getPiece(coordinates);
+        game.move("b1-c3");
+        assertEquals(new Coordinates("c3"), chessPiece.getLocation());
+    }
 }
