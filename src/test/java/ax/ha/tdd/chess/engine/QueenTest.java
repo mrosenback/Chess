@@ -34,4 +34,10 @@ public class QueenTest {
         chessboard.addPiece(queen);
         assertTrue(queen.canMove(chessboard, new Coordinates("f4")));
     }
+
+    @Test
+    public void Queen_move_diagonally() {
+        chessboard.addPiece(queen);
+        assertTrue(queen.canMove(chessboard, new Coordinates("f6")));
+    }
 }

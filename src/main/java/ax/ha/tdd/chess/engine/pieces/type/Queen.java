@@ -18,7 +18,7 @@ public class Queen extends ChessPiece {
 
     @Override
     public boolean canMove(Chessboard chessboard, Coordinates destination) {
-        if (new Rook(PieceType.ROOK, player, location).canMove(chessboard, destination)) {
+        if (new Rook(PieceType.ROOK, player, location).canMove(chessboard, destination) || new Bishop(PieceType.BISHOP, player, location).canMove(chessboard, destination)) {
             return true;
         }
         return false;
