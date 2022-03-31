@@ -33,7 +33,12 @@ public class Pawn extends ChessPiece {
                         return location.getY() == 6 && location.getY() - destination.getY() < 3;
                     }
                     if (destination.getX() != location.getX()) {
-                        return chessboard.getPiece(destination) != null;
+                        if (chessboard.getPiece(destination) != null) {
+                            return chessboard.getPiece(destination).getPieceType() != PieceType.KING;
+                        }
+                        if (chessboard.getPiece(destination) == null) {
+                            return false;
+                        }
                     }
                     return chessboard.getPiece(destination) == null;
                 }
@@ -49,7 +54,12 @@ public class Pawn extends ChessPiece {
                         return location.getY() == 1 && destination.getY() - location.getY() < 3;
                     }
                     if (destination.getX() != location.getX()) {
-                        return chessboard.getPiece(destination) != null;
+                        if (chessboard.getPiece(destination) != null) {
+                            return chessboard.getPiece(destination).getPieceType() != PieceType.KING;
+                        }
+                        if (chessboard.getPiece(destination) == null) {
+                            return false;
+                        }
                     }
                     return chessboard.getPiece(destination) == null;
                 }

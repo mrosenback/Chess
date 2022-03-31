@@ -22,7 +22,9 @@ public class Knight extends ChessPiece {
             return false;
         }
         if (chessboard.getPiece(destination) != null) {
-            return !chessboard.getPiece(destination).getPlayer().getSymbol().equals(player.getSymbol());
+            if (chessboard.getPiece(destination).getPlayer().getSymbol().equals(player.getSymbol()) || chessboard.getPiece(destination).getPieceType() == PieceType.KING) {
+                return false;
+            }
         }
         if (destination.getY() == location.getY()-2 || destination.getY() == location.getY()+2) {
             return destination.getX() == location.getX() + 1 || destination.getX() == location.getX() - 1;

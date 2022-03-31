@@ -22,7 +22,9 @@ public class Bishop extends ChessPiece {
             return false;
         }
         if (chessboard.getPiece(destination) != null) {
-            return !chessboard.getPiece(destination).getPlayer().getSymbol().equals(player.getSymbol());
+            if (chessboard.getPiece(destination).getPlayer().getSymbol().equals(player.getSymbol()) || chessboard.getPiece(destination).getPieceType() == PieceType.KING) {
+                return false;
+            }
         }
         if (location.getY() == destination.getY() || location.getX() == destination.getX()) {
             return false;

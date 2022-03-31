@@ -1,6 +1,7 @@
 package ax.ha.tdd.chess.engine;
 
 import ax.ha.tdd.chess.engine.pieces.PieceType;
+import ax.ha.tdd.chess.engine.pieces.type.King;
 import ax.ha.tdd.chess.engine.pieces.type.Knight;
 import ax.ha.tdd.chess.engine.pieces.type.Pawn;
 import org.junit.jupiter.api.BeforeEach;
@@ -50,5 +51,12 @@ public class KnightTest {
         chessboard.addPiece(knight);
         chessboard.addPiece(new Pawn(PieceType.PAWN, Player.BLACK, new Coordinates("e6")));
         assertTrue(knight.canMove(chessboard, new Coordinates("e6")));
+    }
+
+    @Test
+    public void take_King_not_allowed() {
+        chessboard.addPiece(knight);
+        chessboard.addPiece(new King(PieceType.KING, Player.BLACK, new Coordinates("e6")));
+        assertFalse(knight.canMove(chessboard, new Coordinates("e6")));
     }
 }
