@@ -28,6 +28,12 @@ public class KingTest {
     @Test
     public void King_move_backward() {
         chessboard.addPiece(king);
-        assertTrue(king.canMove(chessboard, new Coordinates("d2")));
+        assertTrue(king.canMove(chessboard, new Coordinates("d3")));
+    }
+
+    @Test
+    public void King_move_sideways() {
+        chessboard.addPiece(king);
+        assertTrue(king.canMove(chessboard, new Coordinates("e4")));
     }
 }
