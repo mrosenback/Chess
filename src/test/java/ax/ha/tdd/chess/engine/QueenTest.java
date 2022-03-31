@@ -61,4 +61,11 @@ public class QueenTest {
         chessboard.addPiece(new Pawn(PieceType.PAWN, Player.WHITE, new Coordinates("d5")));
         assertFalse(queen.canMove(chessboard, new Coordinates("d5")));
     }
+
+    @Test
+    public void move_to_enemy_spot() {
+        chessboard.addPiece(queen);
+        chessboard.addPiece(new Pawn(PieceType.PAWN, Player.BLACK, new Coordinates("d3")));
+        assertTrue(queen.canMove(chessboard, new Coordinates("d3")));
+    }
 }
