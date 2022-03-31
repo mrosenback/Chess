@@ -43,4 +43,11 @@ public class BishopTest {
         chessboard.addPiece(new Pawn(PieceType.PAWN, Player.WHITE, new Coordinates("e5")));
         assertFalse(bishop.canMove(chessboard, new Coordinates("e5")));
     }
+
+    @Test
+    public void move_to_enemy_spot() {
+        chessboard.addPiece(bishop);
+        chessboard.addPiece(new Pawn(PieceType.PAWN, Player.BLACK, new Coordinates("e5")));
+        assertTrue(bishop.canMove(chessboard, new Coordinates("e5")));
+    }
 }
