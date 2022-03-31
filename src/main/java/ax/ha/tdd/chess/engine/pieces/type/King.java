@@ -44,6 +44,45 @@ public class King extends ChessPiece {
                 return false;
             }
         }
+
+        Coordinates coordinates;
+        ChessPiece piece;
+
+        for (int x = 0; x < 7; x++) {
+            for (int y = 0; y < 7; y++) {
+                coordinates = new Coordinates(x,y);
+                piece = chessboard.getPiece(coordinates);
+                if (piece != null) {
+                    if (piece.getPlayer() == Player.BLACK) {
+                        if (piece.getPieceType() == PieceType.PAWN) {
+                            if (new Pawn(PieceType.PAWN, piece.getPlayer(), coordinates).canMove(chessboard, destination)) {
+                                return false;
+                            }
+                        }
+                        if (piece.getPieceType() == PieceType.ROOK) {
+                            if (new Rook(PieceType.ROOK, piece.getPlayer(), coordinates).canMove(chessboard, destination)) {
+                                return false;
+                            }
+                        }
+                        if (piece.getPieceType() == PieceType.KNIGHT) {
+                            if (new Knight(PieceType.KNIGHT, piece.getPlayer(), coordinates).canMove(chessboard, destination)) {
+                                return false;
+                            }
+                        }
+                        if (piece.getPieceType() == PieceType.BISHOP) {
+                            if (new Bishop(PieceType.BISHOP, piece.getPlayer(), coordinates).canMove(chessboard, destination)) {
+                                return false;
+                            }
+                        }
+                        if (piece.getPieceType() == PieceType.QUEEN) {
+                            if (new Queen(PieceType.QUEEN, piece.getPlayer(), coordinates).canMove(chessboard, destination)) {
+                                return false;
+                            }
+                        }
+                    }
+                }
+            }
+        }
         return true;
     }
 }

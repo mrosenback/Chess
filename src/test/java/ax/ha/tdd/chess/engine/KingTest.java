@@ -1,9 +1,7 @@
 package ax.ha.tdd.chess.engine;
 
 import ax.ha.tdd.chess.engine.pieces.PieceType;
-import ax.ha.tdd.chess.engine.pieces.type.Pawn;
-import ax.ha.tdd.chess.engine.pieces.type.King;
-import ax.ha.tdd.chess.engine.pieces.type.Queen;
+import ax.ha.tdd.chess.engine.pieces.type.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class KingTest {
 
     Chessboard chessboard;
-    King king = new King(PieceType.BISHOP, Player.WHITE, new Coordinates("d4"));
+    King king = new King(PieceType.KING, Player.WHITE, new Coordinates("d4"));
 
     @BeforeEach
     public void setUp() {
@@ -47,5 +45,12 @@ public class KingTest {
     public void move_more_than_one_step_not_allowed() {
         chessboard.addPiece(king);
         assertFalse(king.canMove(chessboard, new Coordinates("d6")));
+    }
+
+    @Test
+    public void move_to_threatened_spot_not_allowed() {
+        chessboard.addPiece(king);
+        chessboard.addPiece(new Knight(PieceType.KNIGHT, Player.BLACK, new Coordinates("f6")));
+        assertFalse(king.canMove(chessboard, new Coordinates("e4")));
     }
 }
