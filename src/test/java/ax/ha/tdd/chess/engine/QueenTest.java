@@ -22,4 +22,10 @@ public class QueenTest {
         chessboard.addPiece(queen);
         assertTrue(queen.canMove(chessboard, new Coordinates("d6")));
     }
+
+    @Test
+    public void Queen_move_backward() {
+        chessboard.addPiece(queen);
+        assertTrue(queen.canMove(chessboard, new Coordinates("d2")));
+    }
 }
