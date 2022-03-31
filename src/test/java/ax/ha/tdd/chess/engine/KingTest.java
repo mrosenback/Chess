@@ -24,4 +24,10 @@ public class KingTest {
         chessboard.addPiece(king);
         assertTrue(king.canMove(chessboard, new Coordinates("d5")));
     }
+
+    @Test
+    public void King_move_backward() {
+        chessboard.addPiece(king);
+        assertTrue(king.canMove(chessboard, new Coordinates("d2")));
+    }
 }
