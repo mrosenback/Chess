@@ -51,7 +51,7 @@ public class KnightTest {
     }
 
     @Test
-    public void move_to_enemy_spot_allowed() {
+    public void move_to_enemy_spot() {
         Coordinates coordinates = new Coordinates("b1");
         ChessPiece chessPiece = chessboard.getPiece(coordinates);
         game.move("b1-c3");

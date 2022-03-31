@@ -58,7 +58,7 @@ public abstract class ChessPiece {
      * @param destination destination
      * @return true if piece can move to the destination
      */
-    public abstract boolean canMove(final Chessboard chessboard, final Coordinates destination) throws InvalidMovementException;
+    public abstract boolean canMove(final Chessboard chessboard, final Coordinates destination);
 
     @Override
     public boolean equals(Object o) {

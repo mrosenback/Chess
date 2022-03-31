@@ -62,7 +62,7 @@ public class RookTest {
     }
 
     @Test
-    public void move_to_enemy_spot_allowed() {
+    public void move_to_enemy_spot() {
         Coordinates coordinates = new Coordinates("a1");
         ChessPiece chessPiece = chessboard.getPiece(coordinates);
         game.move("a2-a4");
