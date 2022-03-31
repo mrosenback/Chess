@@ -42,4 +42,10 @@ public class KingTest {
         chessboard.addPiece(king);
         assertTrue(king.canMove(chessboard, new Coordinates("e5")));
     }
+
+    @Test
+    public void move_more_than_one_step_not_allowed() {
+        chessboard.addPiece(king);
+        assertFalse(king.canMove(chessboard, new Coordinates("d6")));
+    }
 }

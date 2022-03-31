@@ -24,6 +24,26 @@ public class King extends ChessPiece {
         if (chessboard.getPiece(destination) != null) {
             return !chessboard.getPiece(destination).getPlayer().getSymbol().equals(player.getSymbol());
         }
+        if (destination.getY() < location.getY()) {
+            if (location.getY() - destination.getY() > 1) {
+                return false;
+            }
+        }
+        if (destination.getY() > location.getY()) {
+            if (destination.getY() - location.getY() > 1) {
+                return false;
+            }
+        }
+        if (destination.getX() < location.getX()) {
+            if (location.getX() - destination.getX() > 1) {
+                return false;
+            }
+        }
+        if (destination.getX() > location.getX()) {
+            if (destination.getX() - location.getX() > 1) {
+                return false;
+            }
+        }
         return true;
     }
 }
