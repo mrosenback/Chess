@@ -36,4 +36,11 @@ public class BishopTest {
         chessboard.addPiece(new Pawn(PieceType.PAWN, Player.WHITE, new Coordinates("e5")));
         assertFalse(bishop.canMove(chessboard, new Coordinates("f6")));
     }
+
+    @Test
+    public void move_to_occupied_spot_not_allowed() {
+        chessboard.addPiece(bishop);
+        chessboard.addPiece(new Pawn(PieceType.PAWN, Player.WHITE, new Coordinates("e5")));
+        assertFalse(bishop.canMove(chessboard, new Coordinates("e5")));
+    }
 }
