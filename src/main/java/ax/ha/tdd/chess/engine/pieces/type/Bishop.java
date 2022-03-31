@@ -24,6 +24,12 @@ public class Bishop extends ChessPiece {
         if (chessboard.getPiece(destination) != null) {
             return !chessboard.getPiece(destination).getPlayer().getSymbol().equals(player.getSymbol());
         }
+        if (location.getY() == destination.getY() || location.getX() == destination.getX()) {
+            return false;
+        }
+        if(Math.abs(destination.getY() - location.getY()) != Math.abs(destination.getX() - location.getX())){
+            return false;
+        }
         return true;
     }
 }
