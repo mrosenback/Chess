@@ -1,6 +1,7 @@
 package ax.ha.tdd.chess.engine;
 
 import ax.ha.tdd.chess.engine.pieces.PieceType;
+import ax.ha.tdd.chess.engine.pieces.type.Pawn;
 import ax.ha.tdd.chess.engine.pieces.type.Queen;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -45,5 +46,12 @@ public class QueenTest {
     public void move_to_not_allowed_spot() {
         chessboard.addPiece(queen);
         assertFalse(queen.canMove(chessboard, new Coordinates("e6")));
+    }
+
+    @Test
+    public void move_over_another_not_allowed() {
+        chessboard.addPiece(queen);
+        chessboard.addPiece(new Pawn(PieceType.PAWN, Player.WHITE, new Coordinates("e5")));
+        assertFalse(queen.canMove(chessboard, new Coordinates("f6")));
     }
 }
