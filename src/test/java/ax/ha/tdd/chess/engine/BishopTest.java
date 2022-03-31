@@ -1,37 +1,31 @@
 package ax.ha.tdd.chess.engine;
 
-import ax.ha.tdd.chess.engine.pieces.ChessPiece;
+import ax.ha.tdd.chess.engine.pieces.PieceType;
+import ax.ha.tdd.chess.engine.pieces.type.Bishop;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BishopTest {
 
     Chessboard chessboard;
-    Game game;
+    Bishop bishop = new Bishop(PieceType.BISHOP, Player.WHITE, new Coordinates("c1"));
 
     @BeforeEach
     public void setUp() {
-        game = new Game();
-        chessboard = game.getBoard();
+        chessboard = new Chessboard();
     }
 
     @Test
     public void Bishop_move_diagonally() {
-        Coordinates coordinates = new Coordinates("c1");
-        ChessPiece chessPiece = chessboard.getPiece(coordinates);
-        game.move("d2-d4");
-        game.move("a7-a6");
-        game.move("c1-f4");
-        assertEquals(new Coordinates("f4"), chessPiece.getLocation());
+        chessboard.addPiece(bishop);
+        assertTrue(bishop.canMove(chessboard, new Coordinates("f4")));
     }
 
     @Test
     public void Bishop_move_straight_not_allowed() {
-        Coordinates coordinates = new Coordinates("c1");
-        ChessPiece chessPiece = chessboard.getPiece(coordinates);
-        game.move("c2-c4");
-        game.move("c1-c3");
-        assertEquals(new Coordinates("c1"), chessPiece.getLocation());
+        chessboard.addPiece(bishop);
+        assertFalse(bishop.canMove(chessboard, new Coordinates("c3")));
     }
 }

@@ -1,62 +1,54 @@
 package ax.ha.tdd.chess.engine;
 
-import ax.ha.tdd.chess.engine.pieces.ChessPiece;
+import ax.ha.tdd.chess.engine.pieces.PieceType;
+import ax.ha.tdd.chess.engine.pieces.type.Knight;
+import ax.ha.tdd.chess.engine.pieces.type.Pawn;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class KnightTest {
 
     Chessboard chessboard;
-    Game game;
+    Knight knight = new Knight(PieceType.KNIGHT, Player.WHITE, new Coordinates("b1"));
 
     @BeforeEach
     public void setUp() {
-        game = new Game();
-        chessboard = game.getBoard();
+        chessboard = new Chessboard();
     }
 
     @Test
     public void Knight_move_to_allowed_spot() {
-        Coordinates coordinates = new Coordinates("b1");
-        ChessPiece chessPiece = chessboard.getPiece(coordinates);
-        game.move("b1-c3");
-        assertEquals(new Coordinates("c3"), chessPiece.getLocation());
+        chessboard.addPiece(knight);
+        assertTrue(knight.canMove(chessboard, new Coordinates("c3")));
     }
 
     @Test
     public void Knight_move_straight_not_allowed() {
-        Coordinates coordinates = new Coordinates("b1");
-        ChessPiece chessPiece = chessboard.getPiece(coordinates);
-        game.move("b1-b3");
-        assertEquals(new Coordinates("b1"), chessPiece.getLocation());
+        chessboard.addPiece(knight);
+        assertFalse(knight.canMove(chessboard, new Coordinates("b3")));
     }
 
     @Test
     public void Knight_move_over_another() {
-        Coordinates coordinates = new Coordinates("b1");
-        ChessPiece chessPiece = chessboard.getPiece(coordinates);
-        game.move("b1-c3");
-        assertEquals(new Coordinates("c3"), chessPiece.getLocation());
+        chessboard.addPiece(knight);
+        chessboard.addPiece(new Pawn(PieceType.PAWN, Player.WHITE, new Coordinates("b2")));
+        chessboard.addPiece(new Pawn(PieceType.PAWN, Player.WHITE, new Coordinates("b3")));
+        assertTrue(knight.canMove(chessboard, new Coordinates("c3")));
     }
 
     @Test
     public void move_to_occupied_spot_not_allowed() {
-        Coordinates coordinates = new Coordinates("b1");
-        ChessPiece chessPiece = chessboard.getPiece(coordinates);
-        game.move("b1-c3");
-        game.move("a7-a6");
-        game.move("c3-e2");
-        assertEquals(new Coordinates("c3"), chessPiece.getLocation());
+        chessboard.addPiece(knight);
+        chessboard.addPiece(new Pawn(PieceType.PAWN, Player.WHITE, new Coordinates("c3")));
+        assertFalse(knight.canMove(chessboard, new Coordinates("c3")));
     }
 
     @Test
     public void move_to_enemy_spot() {
-        Coordinates coordinates = new Coordinates("b1");
-        ChessPiece chessPiece = chessboard.getPiece(coordinates);
-        game.move("b1-c3");
-        game.move("b7-b5");
-        game.move("c3-b5");
-        assertEquals(new Coordinates("b5"), chessPiece.getLocation());
+        chessboard.addPiece(knight);
+        chessboard.addPiece(new Pawn(PieceType.PAWN, Player.BLACK, new Coordinates("c3")));
+        assertTrue(knight.canMove(chessboard, new Coordinates("c3")));
     }
 }
