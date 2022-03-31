@@ -40,4 +40,10 @@ public class QueenTest {
         chessboard.addPiece(queen);
         assertTrue(queen.canMove(chessboard, new Coordinates("f6")));
     }
+
+    @Test
+    public void move_to_not_allowed_spot() {
+        chessboard.addPiece(queen);
+        assertFalse(queen.canMove(chessboard, new Coordinates("e6")));
+    }
 }
