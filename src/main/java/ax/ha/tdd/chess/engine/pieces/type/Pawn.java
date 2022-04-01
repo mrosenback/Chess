@@ -21,7 +21,7 @@ public class Pawn extends ChessPiece {
     public boolean canMove(Chessboard chessboard, Coordinates destination) {
 
         if (!chessboard.getPiece(location).getPromotion()) {
-            if (player.getSymbol().equals("W")) {
+            if (player == Player.WHITE) {
                 if (location.getY() == 0) {
                     chessboard.getPiece(location).setPromotion(true);
                 }
@@ -42,7 +42,7 @@ public class Pawn extends ChessPiece {
                     }
                     return chessboard.getPiece(destination) == null;
                 }
-            } else if (player.getSymbol().equals("B")) {
+            } else if (player == Player.BLACK) {
                 if (location.getY() == 7) {
                     chessboard.getPiece(location).setPromotion(true);
                 }

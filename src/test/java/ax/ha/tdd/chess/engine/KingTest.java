@@ -48,9 +48,16 @@ public class KingTest {
     }
 
     @Test
-    public void move_to_threatened_spot_not_allowed() {
+    public void move_to_threatened_Knight_spot_not_allowed() {
         chessboard.addPiece(king);
         chessboard.addPiece(new Knight(PieceType.KNIGHT, Player.BLACK, new Coordinates("f6")));
         assertFalse(king.canMove(chessboard, new Coordinates("e4")));
+    }
+
+    @Test
+    public void move_to_threatened_Pawn_spot_not_allowed() {
+        chessboard.addPiece(king);
+        chessboard.addPiece(new Pawn(PieceType.PAWN, Player.BLACK, new Coordinates("b5")));
+        assertFalse(king.canMove(chessboard, new Coordinates("c4")));
     }
 }

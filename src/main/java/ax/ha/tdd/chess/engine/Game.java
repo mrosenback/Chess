@@ -109,6 +109,16 @@ public class Game {
                     validMove = false;
                     throw new InvalidMovementException("Illegal move, try again");
                 }
+            } if (piece.getPieceType() == PieceType.KING) {
+                if (new King(piece.getPieceType(), getPlayerToMove(), currentLocation).canMove(board, newLocation)) {
+                    validMove = true;
+                    playerWhite = !playerWhite;
+                    piece.updateLocation(newLocation);
+                    board.updatePiece(piece, currentLocation);
+                } else {
+                    validMove = false;
+                    throw new InvalidMovementException("Illegal move, try again");
+                }
             }
         } catch (InvalidMovementException e) {
             System.out.println(e);

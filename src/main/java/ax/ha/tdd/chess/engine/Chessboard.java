@@ -3,6 +3,8 @@ package ax.ha.tdd.chess.engine;
 import ax.ha.tdd.chess.engine.pieces.ChessPiece;
 import ax.ha.tdd.chess.engine.pieces.ChessPieceStub;
 import ax.ha.tdd.chess.engine.pieces.PieceType;
+import ax.ha.tdd.chess.engine.pieces.type.King;
+import ax.ha.tdd.chess.engine.pieces.type.Pawn;
 
 import java.util.Iterator;
 import java.util.List;
@@ -37,6 +39,10 @@ public class Chessboard implements Iterable<ChessPiece[]> {
     public void updatePiece(ChessPiece chessPiece, Coordinates location) {
         board[location.getY()][location.getX()] = null;
         board[chessPiece.getLocation().getY()][chessPiece.getLocation().getX()] = chessPiece;
+    }
+
+    public void deletePiece(Coordinates location) {
+        board[location.getY()][location.getX()] = null;
     }
 
     /**

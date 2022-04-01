@@ -55,7 +55,9 @@ public class King extends ChessPiece {
                 if (piece != null) {
                     if (piece.getPlayer() != player) {
                         if (piece.getPieceType() == PieceType.PAWN) {
+                            chessboard.addPiece(new Pawn(PieceType.PAWN, player, destination));
                             if (new Pawn(PieceType.PAWN, piece.getPlayer(), coordinates).canMove(chessboard, destination)) {
+                                chessboard.deletePiece(destination);
                                 return false;
                             }
                         }
