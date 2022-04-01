@@ -81,6 +81,14 @@ public class King extends ChessPiece {
                                 return false;
                             }
                         }
+                        if (piece.getPieceType() == PieceType.KING) {
+                            if (piece.getLocation().getY() == destination.getY()-1 || piece.getLocation().getY() == destination.getY()+1) {
+                                return false;
+                            }
+                            if (piece.getLocation().getX() == destination.getX()-1 || piece.getLocation().getX() == destination.getX()+1) {
+                                return false;
+                            }
+                        }
                     }
                 }
             }

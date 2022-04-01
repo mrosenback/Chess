@@ -60,4 +60,11 @@ public class KingTest {
         chessboard.addPiece(new Pawn(PieceType.PAWN, Player.BLACK, new Coordinates("b5")));
         assertFalse(king.canMove(chessboard, new Coordinates("c4")));
     }
+
+    @Test
+    public void move_to_threatened_King_spot_not_allowed() {
+        chessboard.addPiece(king);
+        chessboard.addPiece(new King(PieceType.KING, Player.BLACK, new Coordinates("f4")));
+        assertFalse(king.canMove(chessboard, new Coordinates("e4")));
+    }
 }
