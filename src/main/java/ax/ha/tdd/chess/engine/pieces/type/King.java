@@ -53,7 +53,7 @@ public class King extends ChessPiece {
                 coordinates = new Coordinates(x,y);
                 piece = chessboard.getPiece(coordinates);
                 if (piece != null) {
-                    if (piece.getPlayer() == Player.BLACK) {
+                    if (piece.getPlayer() != player) {
                         if (piece.getPieceType() == PieceType.PAWN) {
                             if (new Pawn(PieceType.PAWN, piece.getPlayer(), coordinates).canMove(chessboard, destination)) {
                                 return false;
